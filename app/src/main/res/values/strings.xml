@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">Vivid Health</string>
+    <string name="edit_text_username">Username</string>
+    <string name="edit_text_password">Password</string>
+    <string name="login_btn_text">Login</string>
+    <string name="sign_up_text">Not a user? Sign up.</string>
+
+    <string name="add_reminder_btn">Add a new reminder</string>
+
+    <string name="app_greeting">Hello, user!</string>
+    <string name="reminder_title_1">Please drink at least 8 glasses of water water everyday!</string>
+    <string name="reminder_detail_1">Remind me every 3 hours</string>
+    <string name="reminder_time_1">Starting from 9:00 am to 10:00 pm</string>
+    <string name="reminder_edit_btn">Edit this reminder</string>
+
+    <string name="reminder_title_2">Remember to work out every day!</string>
+    <string name="reminder_detail_2">Remind me every day</string>
+    <string name="reminder_time_2">At 11:00 am</string>
+
+    <string name="reminder_title_3">Time to sleep early!</string>
+    <string name="reminder_detail_3">Remind me every day</string>
+    <string name="reminder_time_3">At 10:00 pm</string>
+
+    <string name="app_new_reminder">Adding a new reminder</string>
+
+    <string name="new_reminder_frequency">How often would you like to be reminded?</string>
+    <string name="new_reminder_title">Title of your new reminder</string>
+    <string name="new_reminder_time_start">When would you like to begin this reminder?</string>
+    <string name="new_reminder_time_end">When would you like to end this reminder?</string>
+
+    <string name="new_reminder_frequency_option_1">Every week</string>
+    <string name="new_reminder_frequency_option_2">Every 3 days</string>
+    <string name="new_reminder_frequency_option_3">Every day</string>
+    <string name="new_reminder_frequency_option_4">Every 12 hours</string>
+    <string name="new_reminder_frequency_option_5">Every 3 hours</string>
+
+    <string name="create_new_reminder_btn">Create new reminder</string>
+</resources>
