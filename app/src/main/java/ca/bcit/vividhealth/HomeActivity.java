@@ -19,4 +19,9 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void onWorkOutPlan(View v) {
+        Intent i = new Intent(this, WorkoutPlan.class);
+        startActivity(i);
+    }
+
 }
