@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "372661290912",
+    "firebase_url": "https://vivid-health.firebaseio.com",
+    "project_id": "vivid-health",
+    "storage_bucket": "vivid-health.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:372661290912:android:7dea242969e4ed976586c5",
+        "android_client_info": {
+          "package_name": "ca.bcit.vividhealth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "372661290912-d5isf2dt7uc0dj80tvnjscjs0r72nbog.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1zZzcM9GVLIZkXOP3hhoq4mItsOghxwM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "372661290912-d5isf2dt7uc0dj80tvnjscjs0r72nbog.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
