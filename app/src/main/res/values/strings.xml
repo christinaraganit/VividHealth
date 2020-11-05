@@ -1,8 +1,10 @@
 <resources>
     <string name="app_name">Vivid Health</string>
     <string name="edit_text_username">Username</string>
+    <string name="edit_text_email">Email</string>
     <string name="edit_text_password">Password</string>
     <string name="login_btn_text">Login</string>
+    <string name="signUp_btn_text">SignUp</string>
     <string name="sign_up_text">Not a user? Sign up.</string>
 
     <string name="add_reminder_btn">Add a new reminder</string>

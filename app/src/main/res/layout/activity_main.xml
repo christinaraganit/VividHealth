@@ -26,16 +26,16 @@
         android:textStyle="bold"/>
 
     <EditText
-        android:id="@+id/edit_text_username"
+        android:id="@+id/edit_text_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginStart="64dp"
         android:layout_marginEnd="64dp"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="textEmailAddress"
         android:textColor="@color/colorPrimaryLight"
-        android:hint="@string/edit_text_username"
+        android:hint="@string/edit_text_email"
         android:textColorHint="@color/colorPrimaryLight"
         android:backgroundTint="@color/colorAccent"/>
 
@@ -51,6 +51,13 @@
         android:hint="@string/edit_text_password"
         android:textColorHint="@color/colorPrimaryLight"
         android:backgroundTint="@color/colorAccent"/>
+    <ProgressBar
+        android:id="@+id/indeterminateBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:visibility="gone"
+        />
 
     <Button
         android:id="@+id/login_button"
@@ -65,13 +72,16 @@
         android:background="@drawable/roundedbutton"/>
 
     <TextView
+        android:id="@+id/signUp_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:onClick="onSignUp"
         android:layout_marginTop="8dp"
         android:textStyle="bold"
         android:text="@string/sign_up_text"
         android:textColor="@color/colorPrimaryLight"/>
+
 
 
 </LinearLayout>
