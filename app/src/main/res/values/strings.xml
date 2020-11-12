@@ -6,8 +6,12 @@
     <string name="login_btn_text">Login</string>
     <string name="signUp_btn_text">SignUp</string>
     <string name="sign_up_text">Not a user? Sign up.</string>
+    <string name="edit_text_name">Name</string>
+    <string name="edit_text_age">Age</string>
+    <string name="edit_text_weight">Weight</string>
 
     <string name="add_reminder_btn">Add a new reminder</string>
+    <string name="next_btn">Next</string>
 
     <string name="app_greeting">Hello, user!</string>
     <string name="reminder_title_1">Please drink at least 8 glasses of water water everyday!</string>
@@ -37,4 +41,8 @@
     <string name="new_reminder_frequency_option_5">Every 3 hours</string>
 
     <string name="create_new_reminder_btn">Create new reminder</string>
+
+    <string name="welcome_text">Welcome to Vivid Health.\n
+        We first need to get your account set up.\n
+        Please enter the following details.</string>
 </resources>

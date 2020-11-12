@@ -5,17 +5,19 @@ import java.util.List;
 public class User {
     String userId;
     String userName;
+    String userEmail;
     int userAge;
     int userWeight;
     List<Reminder> reminderList;
 
     public User() {}
 
-    public User(String userId, String userName, int userAge, int userWeight) {
+    public User(String userId, String userEmail, int userAge, int userWeight, String userName) {
         this.userId = userId;
-        this.userName = userName;
+        this.userEmail = userEmail;
         this.userAge = userAge;
         this.userWeight = userWeight;
+        this.userName = userName;
     }
 
     public String getUserId() {
@@ -26,12 +28,12 @@ public class User {
         this.userId = userId;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUserEmail() {
+        return userEmail;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
     public int getUserAge() {
@@ -56,5 +58,13 @@ public class User {
 
     public void setReminderList(List<Reminder> reminderList) {
         this.reminderList = reminderList;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }
