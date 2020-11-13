@@ -74,4 +74,10 @@ public class HomeActivity extends AppCompatActivity {
         });
 
     }
+
+    public void onProfileClick(View view) {
+        Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
+        startActivity(intent);
+        finish();
+    }
 }
