@@ -37,7 +37,7 @@ public class ProfileActivity extends AppCompatActivity {
                         if(task.isSuccessful()){
                             DocumentSnapshot document = task.getResult();
                             profileName.setText(document.get("Name").toString());
-                            
+
                         }
                     }
                 });
