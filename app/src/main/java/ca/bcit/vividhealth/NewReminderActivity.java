@@ -16,11 +16,14 @@ public class NewReminderActivity extends AppCompatActivity {
     }
 
     public void onCreateNewReminder(View v) {
+
+
         Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
 
         String messageText="Your reminder was created.";
         Toast toast = Toast.makeText(this, messageText, Toast.LENGTH_SHORT);
         toast.show();
+        finish();
     }
 }

@@ -6,17 +6,25 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class HomeActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private Object FirebaseAuthInvalidUserException;
+    private FirebaseFirestore database = FirebaseFirestore.getInstance();
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,12 +42,29 @@ public class HomeActivity extends AppCompatActivity {
             }
 
         }
-
         super.onCreate(savedInstanceState);
-
-
-
         setContentView(R.layout.activity_home);
+
+        final TextView greeting = findViewById(R.id.greeting);
+
+        FirebaseUser firebaseUser = mAuth.getCurrentUser();
+        database.collection("Users").document(firebaseUser.getUid()).get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if(task.isSuccessful()){
+                            DocumentSnapshot document = task.getResult();
+                            greeting.setText(String.format("Hello, %s", document.get("Name").toString()));
+                            greeting.setVisibility(View.VISIBLE);
+
+                        }
+                    }
+                });
+
+
+
+
+
 
         // Firebase Auth
 
@@ -78,6 +103,5 @@ public class HomeActivity extends AppCompatActivity {
     public void onProfileClick(View view) {
         Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
         startActivity(intent);
-        finish();
     }
 }
