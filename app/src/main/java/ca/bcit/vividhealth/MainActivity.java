@@ -19,7 +19,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
-
     static MainActivity mainActivity;
     private static final String TAG = "";
     private FirebaseAuth mAuth;
@@ -27,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         //Checks if user is logged in, if not returns to the login page
         try{
             throw mAuth.getCurrentUser().reload().getException();
