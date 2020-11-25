@@ -2,11 +2,11 @@
 
 # Hey, Team Z.A.C here.
 
-Student 1: Christina Raganit
+Student 1: Christina Raganit<br/>
 Student number: A01166318
 
-Student 2:
+Student 2:<br/>
 Student number:
 
-Student 3:
+Student 3:<br/>
 Student number:
