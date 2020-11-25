@@ -20,6 +20,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
     static MainActivity mainActivity;
+    
     private static final String TAG = "";
     private FirebaseAuth mAuth;
 
