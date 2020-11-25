@@ -62,7 +62,7 @@
                     android:textStyle="bold" />
 
                 <RadioButton
-                    android:id="@+id/radioButton"
+                    android:id="@+id/radioButtonWeek"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
@@ -72,7 +72,7 @@
                     android:textColor="@color/colorText" />
 
                 <RadioButton
-                    android:id="@+id/radioButton1"
+                    android:id="@+id/radioButton3Days"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
@@ -82,7 +82,7 @@
                     android:textColor="@color/colorText" />
 
                 <RadioButton
-                    android:id="@+id/radioButton2"
+                    android:id="@+id/radioButtonDay"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
@@ -92,7 +92,7 @@
                     android:textColor="@color/colorText" />
 
                 <RadioButton
-                    android:id="@+id/radioButton3"
+                    android:id="@+id/radioButton12Hours"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
@@ -102,7 +102,7 @@
                     android:textColor="@color/colorText" />
 
                 <RadioButton
-                    android:id="@+id/radioButton4"
+                    android:id="@+id/radioButton3Hours"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
@@ -116,7 +116,7 @@
         </androidx.cardview.widget.CardView>
 
         <EditText
-            android:id="@+id/editTextTime2"
+            android:id="@+id/editTextTimeBegin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -129,7 +129,7 @@
             android:textColorHint="@color/colorText" />
 
         <EditText
-            android:id="@+id/editTextTime3"
+            android:id="@+id/editTextTimeEnd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
