@@ -5,8 +5,8 @@
 Student 1: Christina Raganit<br/>
 Student number: A01166318
 
-Student 2:<br/>
+Student 2:Asher Gumunyu<br/>
 Student number:
 
-Student 3:<br/>
+Student 3:Zoltan Biro<br/>
 Student number:
