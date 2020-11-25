@@ -45,4 +45,19 @@
     <string name="welcome_text">Welcome to Vivid Health.\n
         We first need to get your account set up.\n
         Please enter the following details.</string>
+    <string name="toolbar_quote">“The best way to not feel hopeless is to get up and do something.”</string>
+    <string name="toolbar_author">Barack Obama</string>
+    <string name="toolbar_photographer">Photograph by Aarn Giri</string>
+    <string name="nav_profile">Profile</string>
+    <string name="nav_reminders">Reminders</string>
+    <string name="nav_workouts">Workouts</string>
+    <string name="your_routine">Your routine</string>
+    <string name="nav_contact">Contact</string>
+    <string name="nav_about">About us</string>
+    <string name="nav_feedback">Send feedback</string>
+    <string name="layout">Layout</string>
+    <string name="nav_toggle">Night mode</string>
+    <string name="nav_open_drawer">Open navigation drawer</string>
+    <string name="nav_close_drawer">Close navigation drawer</string>
+    <string name="nav_home">Home</string>
 </resources>
