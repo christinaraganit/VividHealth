@@ -12,6 +12,7 @@
         <activity android:name=".UserInfoActivity"></activity>
         <activity android:name=".SignUpActivity" />
         <activity android:name=".WorkoutPlan" />
+        <activity android:name=".SittingBreak" />
         <activity android:name=".NewReminderActivity" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".HomeActivity" android:theme="@style/AppTheme.NoActionBar"/>

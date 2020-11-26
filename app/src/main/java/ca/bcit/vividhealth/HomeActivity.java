@@ -146,6 +146,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         startActivity(i);
     }
 
+    public void onSittingBreak(View v) {
+        Intent i = new Intent(this, SittingBreak.class);
+        startActivity(i);
+    }
+
     @Override
     protected void onStart() {
         super.onStart();
