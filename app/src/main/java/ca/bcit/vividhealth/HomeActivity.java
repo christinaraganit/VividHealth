@@ -19,6 +19,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +42,10 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.Calendar;
 import java.util.Objects;
+
+import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
+import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
+import static android.widget.LinearLayout.*;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener  {
 
@@ -211,72 +216,103 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void loadReminders(){
+        final LinearLayout home_layout = findViewById(R.id.home_layout);
+
         database.collection("Users").document(firebaseUser.getUid()).collection("Reminders").get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                LinearLayout.LayoutParams cardlayoutParams = new LinearLayout.LayoutParams(
-                                        LinearLayout.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
-                                CardView cardView = new CardView(getApplicationContext());
+                                // Building all the dp values
+                                int dp_8 = (int) TypedValue.applyDimension(
+                                        TypedValue.COMPLEX_UNIT_DIP, 8, getResources()
+                                                .getDisplayMetrics());
 
-                                LinearLayout linearLayout = new LinearLayout(getApplicationContext());
-                                linearLayout.setLayoutParams(cardlayoutParams);
-                                linearLayout.setOrientation(LinearLayout.VERTICAL);
+                                int dp_16 = (int) TypedValue.applyDimension(
+                                        TypedValue.COMPLEX_UNIT_DIP, 16, getResources()
+                                                .getDisplayMetrics());
 
+                                int dp_24 = (int) TypedValue.applyDimension(
+                                        TypedValue.COMPLEX_UNIT_DIP, 24, getResources()
+                                                .getDisplayMetrics());
 
+                                int dp_28 = (int) TypedValue.applyDimension(
+                                        TypedValue.COMPLEX_UNIT_DIP, 28, getResources()
+                                                .getDisplayMetrics());
 
+                                int dp_32 = (int) TypedValue.applyDimension(
+                                        TypedValue.COMPLEX_UNIT_DIP, 32, getResources()
+                                                .getDisplayMetrics());
 
-                                TextView title = new TextView(getApplicationContext());
-                                TextView repeat = new TextView(getApplicationContext());
-                                TextView time = new TextView(getApplicationContext());
-                                Button editBtn = new Button(getApplicationContext());
+                                // Card View
+                                LinearLayout.LayoutParams cardParams =
+                                        new LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT);
+                                cardParams.setMargins(dp_32, dp_16, dp_32, dp_16);
+                                CardView card = new CardView(getBaseContext());
+                                card.setLayoutParams(cardParams);
+                                card.setCardBackgroundColor(getColor(R.color.colorAccent));
+                                card.setRadius(dp_8);
+                                card.setCardElevation(dp_8);
 
-                                editBtn.setText("EDIT THIS REMINDER");
-                                editBtn.setBackgroundColor(getColor(R.color.colorPrimary));
-                                LinearLayout.LayoutParams btnlayoutParams = new LinearLayout.LayoutParams(
-                                        LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                                btnlayoutParams.setMargins(16,0,16,16);
-                                editBtn.setLayoutParams(btnlayoutParams);
-                                editBtn.setTextColor(Color.WHITE);
+                                // Linear Layout
+                                LinearLayout.LayoutParams linearParams =
+                                        new LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT);
+                                LinearLayout linearLayout = new LinearLayout(getBaseContext());
+                                linearLayout.setOrientation(VERTICAL);
+                                linearLayout.setLayoutParams(linearParams);
 
-                                editBtn.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View view) {
-
-                                    }
-                                });
-
-
-
-                                cardlayoutParams.setMargins(32, 24, 32, 24);
-                                cardView.setLayoutParams(cardlayoutParams);
-                                cardView.setCardBackgroundColor(getColor(R.color.colorAccent));
-                                cardView.setCardElevation(8);
-                                cardView.setRadius(8);
-
-                                title.setText(document.getData().get("title").toString());
-                                title.setTextSize(20);
-                                title.setTextColor(Color.BLACK);
+                                // Title TextView
+                                LinearLayout.LayoutParams titleParams =
+                                        new LinearLayout.LayoutParams(WRAP_CONTENT,WRAP_CONTENT);
+                                titleParams.setMargins(dp_16, dp_16, dp_16, 0);
+                                TextView title = new TextView(getBaseContext());
+                                title.setLayoutParams(titleParams);
+                                title.setTextColor(getColor(R.color.colorText));
                                 title.setTypeface(Typeface.DEFAULT_BOLD);
-                                repeat.setText("Remind me " + document.getData().get("repeat").toString());
+                                title.setTextSize(20);
+                                title.setText(document.getData().get("title").toString());
 
-                                String time_string = "At " + document.getData().get("time_hour").toString()
-                                        + ":" + document.getData().get("time_minute");
+                                // Repetition TextView
+                                LinearLayout.LayoutParams repeatParams =
+                                        new LinearLayout.LayoutParams(WRAP_CONTENT,WRAP_CONTENT);
+                                repeatParams.setMargins(dp_16, 0, dp_16, 0);
+                                TextView repeat = new TextView(getBaseContext());
+                                repeat.setLayoutParams(repeatParams);
+                                repeat.setText(String.format("Remind me %s", document.getData()
+                                        .get("repeat")));
+                                repeat.setTextColor(getColor(R.color.colorText));
 
-                                time.setText(time_string);
+                                // At TextView
+                                LinearLayout.LayoutParams atParams =
+                                        new LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT);
+                                atParams.setMargins(dp_16, 0, dp_16, dp_8);
+                                TextView atText = new TextView(getBaseContext());
+                                atText.setLayoutParams(atParams);
+                                atText.setTextColor(getColor(R.color.colorText));
+                                atText.setText(String.format("At %s:%s", document.getData()
+                                        .get("time_hour"), document.getData()
+                                        .get("time_minute")));
+
+                                // Button
+                                LinearLayout.LayoutParams btnParams =
+                                        new LinearLayout.LayoutParams(MATCH_PARENT, dp_28);
+                                btnParams.setMargins(dp_16, 0, dp_16, dp_8);
+                                Button button = new Button(getBaseContext());
+                                button.setLayoutParams(btnParams);
+                                button.setBackground(getDrawable(R.drawable.editbutton));
+                                button.setText(R.string.reminder_edit_btn);
+                                button.setTextColor(getColor(R.color.colorPrimaryLight));
 
                                 linearLayout.addView(title);
                                 linearLayout.addView(repeat);
-                                linearLayout.addView(time);
+                                linearLayout.addView(atText);
+                                linearLayout.addView(button);
 
-                                linearLayout.addView(editBtn);
+                                card.addView(linearLayout);
+                                home_layout.addView(card);
 
-                                cardView.addView(linearLayout);
-
-                                home_layout.addView(cardView);
 
                             }
                         } else {

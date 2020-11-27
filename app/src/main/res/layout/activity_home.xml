@@ -31,13 +31,14 @@
         app:menu="@menu/menu_nav" />
 
     <ScrollView
-        android:id="@+id/home_layout"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/home_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -72,16 +73,6 @@
                     android:text="@string/add_reminder_btn"
                     android:textColor="@color/colorPrimaryLight"
                     android:textSize="16sp" />
-=======
-                    android:layout_height="28dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="8dp"
-                    android:onClick="onMorningCompliment"
-                    android:background="@drawable/editbutton"
-                    android:text="View your workout plan"
-                    android:textColor="@color/colorPrimaryLight" />
->>>>>>> 401d12d30e31d119377c5b49eed65816d362936c
 
             </androidx.cardview.widget.CardView>
 
@@ -214,7 +205,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="24dp"
-                android:layout_marginBottom="24dp"
                 android:layout_marginEnd="32dp"
                 app:cardBackgroundColor="@color/colorAccent"
                 app:cardCornerRadius="8dp"
