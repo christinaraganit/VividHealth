@@ -72,6 +72,16 @@
                     android:text="@string/add_reminder_btn"
                     android:textColor="@color/colorPrimaryLight"
                     android:textSize="16sp" />
+=======
+                    android:layout_height="28dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:onClick="onMorningCompliment"
+                    android:background="@drawable/editbutton"
+                    android:text="View your workout plan"
+                    android:textColor="@color/colorPrimaryLight" />
+>>>>>>> 401d12d30e31d119377c5b49eed65816d362936c
 
             </androidx.cardview.widget.CardView>
 

@@ -33,6 +33,8 @@
         <activity android:name=".SignUpActivity" />
         <activity android:name=".WorkoutPlan" />
         <activity android:name=".SittingBreak" />
+        <activity android:name=".GetActive" />
+        <activity android:name=".MorningCompliment" />
         <activity android:name=".NewReminderActivity" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".HomeActivity" android:theme="@style/AppTheme.NoActionBar"/>

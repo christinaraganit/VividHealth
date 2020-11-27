@@ -176,6 +176,16 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         startActivity(i);
     }
 
+    public void onGetActive(View v) {
+        Intent i = new Intent(this, GetActive.class);
+        startActivity(i);
+    }
+
+    public void onMorningCompliment(View v) {
+        Intent i = new Intent(this, MorningCompliment.class);
+        startActivity(i);
+    }
+
     @Override
     protected void onStart() {
         super.onStart();
