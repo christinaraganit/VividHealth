@@ -176,7 +176,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="8dp"
-                    android:onClick="onSittingBreak"
+                    android:onClick="onGetActive"
                     android:background="@drawable/editbutton"
                     android:text="View your workout plan"
                     android:textColor="@color/colorPrimaryLight" />
