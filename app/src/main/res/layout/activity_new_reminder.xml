@@ -5,11 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+
     tools:context=".NewReminderActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingBottom="24dp"
         android:orientation="vertical">
 
         <TextView
@@ -61,85 +63,99 @@
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
-                <RadioButton
-                    android:id="@+id/radioButton"
+                <RadioGroup
+                    android:id="@+id/radioGroup"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginEnd="32dp"
-                    android:buttonTint="@color/colorText"
-                    android:text="@string/new_reminder_frequency_option_1"
-                    android:textColor="@color/colorText" />
+                    android:layout_height="wrap_content">
 
-                <RadioButton
-                    android:id="@+id/radioButton1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginEnd="32dp"
-                    android:buttonTint="@color/colorText"
-                    android:text="@string/new_reminder_frequency_option_2"
-                    android:textColor="@color/colorText" />
+                    <RadioButton
+                        android:contentDescription="weekly"
+                        android:checked="true"
+                        android:id="@+id/radioButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginEnd="32dp"
+                        android:buttonTint="@color/colorText"
+                        android:text="@string/new_reminder_frequency_option_1"
+                        android:textColor="@color/colorText" />
 
-                <RadioButton
-                    android:id="@+id/radioButton2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginEnd="32dp"
-                    android:buttonTint="@color/colorText"
-                    android:text="@string/new_reminder_frequency_option_3"
-                    android:textColor="@color/colorText" />
+                    <RadioButton
+                        android:contentDescription="tri_day"
+                        android:id="@+id/radioButton1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginEnd="32dp"
+                        android:buttonTint="@color/colorText"
+                        android:text="@string/new_reminder_frequency_option_2"
+                        android:textColor="@color/colorText" />
 
-                <RadioButton
-                    android:id="@+id/radioButton3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginEnd="32dp"
-                    android:buttonTint="@color/colorText"
-                    android:text="@string/new_reminder_frequency_option_4"
-                    android:textColor="@color/colorText" />
+                    <RadioButton
+                        android:contentDescription="daily"
+                        android:id="@+id/radioButton2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginEnd="32dp"
+                        android:buttonTint="@color/colorText"
+                        android:text="@string/new_reminder_frequency_option_3"
+                        android:textColor="@color/colorText" />
 
-                <RadioButton
-                    android:id="@+id/radioButton4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginEnd="32dp"
-                    android:layout_marginBottom="16dp"
-                    android:buttonTint="@color/colorText"
-                    android:text="@string/new_reminder_frequency_option_5"
-                    android:textColor="@color/colorText" />
+                    <RadioButton
+                        android:contentDescription="half_day"
+                        android:id="@+id/radioButton3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginEnd="32dp"
+                        android:buttonTint="@color/colorText"
+                        android:text="@string/new_reminder_frequency_option_4"
+                        android:textColor="@color/colorText" />
+
+                    <RadioButton
+                        android:contentDescription="tri_hour"
+                        android:id="@+id/radioButton4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginEnd="32dp"
+                        android:layout_marginBottom="16dp"
+                        android:buttonTint="@color/colorText"
+                        android:text="@string/new_reminder_frequency_option_5"
+                        android:textColor="@color/colorText" />
+
+                </RadioGroup>
+
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
 
-        <EditText
-            android:id="@+id/editTextTime2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="32dp"
-            android:backgroundTint="@color/colorPrimary"
-            android:ems="10"
-            android:hint="@string/new_reminder_time_start"
-            android:inputType="time"
-            android:textColorHint="@color/colorText" />
 
-        <EditText
+
+        <TextView
             android:id="@+id/editTextTime3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
             android:layout_marginEnd="32dp"
             android:backgroundTint="@color/colorPrimary"
             android:ems="10"
             android:hint="@string/new_reminder_time_end"
-            android:inputType="time"
             android:textColorHint="@color/colorText" />
+
+        <TimePicker
+            android:id="@+id/r_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:headerBackground="@color/colorPrimary"
+            android:numbersBackgroundColor="@color/colorPrimary"
+            android:numbersSelectorColor="@color/colorPrimaryDark"
+            android:numbersTextColor="@color/colorPrimaryLight">
+
+        </TimePicker>
 
         <Button
             android:layout_width="match_parent"

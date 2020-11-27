@@ -1,18 +1,29 @@
 package ca.bcit.vividhealth;
 
+import androidx.annotation.ColorRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,12 +36,20 @@ import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.Calendar;
+import java.util.Objects;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener  {
 
     private FirebaseAuth mAuth;
     private Object FirebaseAuthInvalidUserException;
     private FirebaseFirestore database = FirebaseFirestore.getInstance();
+    private FirebaseUser firebaseUser;
+    private String TAG = "";
+    LinearLayout home_layout;
 
 
 
@@ -38,7 +57,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         //Checks if user is logged in, if not returns to the login page
         try{
-            throw mAuth.getCurrentUser().reload().getException();
+            throw Objects.requireNonNull(Objects.requireNonNull(mAuth.getCurrentUser()).reload().getException());
         } catch (Exception e) {
             mAuth = FirebaseAuth.getInstance();
             FirebaseUser currentUser = mAuth.getCurrentUser();
@@ -55,7 +74,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         final TextView greeting = findViewById(R.id.greeting);
 
-        FirebaseUser firebaseUser = mAuth.getCurrentUser();
+        firebaseUser = mAuth.getCurrentUser();
         database.collection("Users").document(firebaseUser.getUid()).get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
@@ -86,6 +105,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         // Firebase Auth
+
+
+        // Placing user reminders on the home screen
+        home_layout = findViewById(R.id.home_layout);
+        loadReminders();
+
 
 
     }
@@ -174,4 +199,82 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
         startActivity(intent);
     }
+
+    public void loadReminders(){
+        database.collection("Users").document(firebaseUser.getUid()).collection("Reminders").get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                LinearLayout.LayoutParams cardlayoutParams = new LinearLayout.LayoutParams(
+                                        LinearLayout.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+                                CardView cardView = new CardView(getApplicationContext());
+
+                                LinearLayout linearLayout = new LinearLayout(getApplicationContext());
+                                linearLayout.setLayoutParams(cardlayoutParams);
+                                linearLayout.setOrientation(LinearLayout.VERTICAL);
+
+
+
+
+                                TextView title = new TextView(getApplicationContext());
+                                TextView repeat = new TextView(getApplicationContext());
+                                TextView time = new TextView(getApplicationContext());
+                                Button editBtn = new Button(getApplicationContext());
+
+                                editBtn.setText("EDIT THIS REMINDER");
+                                editBtn.setBackgroundColor(getColor(R.color.colorPrimary));
+                                LinearLayout.LayoutParams btnlayoutParams = new LinearLayout.LayoutParams(
+                                        LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                                btnlayoutParams.setMargins(16,0,16,16);
+                                editBtn.setLayoutParams(btnlayoutParams);
+                                editBtn.setTextColor(Color.WHITE);
+
+                                editBtn.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+
+                                    }
+                                });
+
+
+
+                                cardlayoutParams.setMargins(32, 24, 32, 24);
+                                cardView.setLayoutParams(cardlayoutParams);
+                                cardView.setCardBackgroundColor(getColor(R.color.colorAccent));
+                                cardView.setCardElevation(8);
+                                cardView.setRadius(8);
+
+                                title.setText(document.getData().get("title").toString());
+                                title.setTextSize(20);
+                                title.setTextColor(Color.BLACK);
+                                title.setTypeface(Typeface.DEFAULT_BOLD);
+                                repeat.setText("Remind me " + document.getData().get("repeat").toString());
+
+                                String time_string = "At " + document.getData().get("time_hour").toString()
+                                        + ":" + document.getData().get("time_minute");
+
+                                time.setText(time_string);
+
+                                linearLayout.addView(title);
+                                linearLayout.addView(repeat);
+                                linearLayout.addView(time);
+
+                                linearLayout.addView(editBtn);
+
+                                cardView.addView(linearLayout);
+
+                                home_layout.addView(cardView);
+
+                            }
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+    }
+
+
 }

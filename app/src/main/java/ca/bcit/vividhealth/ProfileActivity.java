@@ -28,11 +28,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import static androidx.core.app.NotificationCompat.*;
 
 public class ProfileActivity extends AppCompatActivity {
+
     private static final String CHANNEL_ID = "CHANNEL_SAMPLE";
     FirebaseAuth mAuth;
     TextView profileName;
     private FirebaseFirestore database = FirebaseFirestore.getInstance();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +56,6 @@ public class ProfileActivity extends AppCompatActivity {
                     }
                 });
 
-
-
         // Finds you button from the xml layout file
         Button createNotificationButton = findViewById(R.id.notify);
 
@@ -69,8 +67,6 @@ public class ProfileActivity extends AppCompatActivity {
                 addNotification();
             }
         });
-
-
 
     }
 
