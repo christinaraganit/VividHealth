@@ -2,6 +2,17 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ca.bcit.vividhealth">
 
+    //You need the wake lock so the phone can be activated
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    //You need the permission to set the alarm
+    <uses-permission android:name="your.package.alarm.permission.SET_ALARM" />
+
+    //And you need the permission to listen the boot
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/app_icon"
@@ -9,11 +20,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".UserInfoActivity"></activity>
+
+        <!--This is the receiver you called when the alarm was executed-->
+        <receiver android:name="AlarmBroadcaster" />
+        <!--This is the service that will run when the alarm time is reached-->
+        <service
+            android:name="NotificationTrigger"
+            android:exported="false" />
+        <!--You see how the filter here is boot completed, that is why that receiver works, cause you declared the filter here-->
+
+        <activity android:name=".UserInfoActivity"/>
         <activity android:name=".SignUpActivity" />
         <activity android:name=".WorkoutPlan" />
+        <activity android:name=".SittingBreak" />
+        <activity android:name=".GetActive" />
+        <activity android:name=".MorningCompliment" />
         <activity android:name=".NewReminderActivity" />
-        <activity android:name=".ProfileActivity" />
+        <activity android:name=".ProfileActivity" android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".HomeActivity" android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".MainActivity">
             <intent-filter>

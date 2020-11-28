@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/menu">
     <group
         android:checkableBehavior="single"
         android:title="@string/your_routine">
         <item
             android:id="@+id/nav_home"
-            android:icon="@android:drawable/sym_action_email"
-            android:title="@string/nav_home"
-            android:checked="true" />
+            android:icon="@drawable/ic_home"
+            android:title="@string/nav_home" />
         <item
             android:id="@+id/nav_profile"
-            android:icon="@android:drawable/sym_action_email"
+            android:icon="@drawable/ic_profile"
             android:title="@string/nav_profile"
             />
         <item
@@ -32,7 +32,7 @@
                 android:title="@string/nav_about" />
             <item
                 android:id="@+id/nav_feedback"
-                android:icon="@android:drawable/sym_action_email"
+                android:icon="@drawable/ic_feedback"
                 android:title="@string/nav_feedback" />
     </group>
 
