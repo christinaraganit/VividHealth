@@ -305,27 +305,36 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                                 // Button
                                 LinearLayout.LayoutParams btnParams =
                                         new LinearLayout.LayoutParams(MATCH_PARENT, dp_28);
-                                btnParams.setMargins(dp_16, 0, dp_16, dp_16);
+                                btnParams.setMargins(dp_16, 0, dp_16, dp_8);
                                 Button button = new Button(getBaseContext());
                                 button.setLayoutParams(btnParams);
                                 button.setBackground(getDrawable(R.drawable.editbutton));
-
                                 ViewGroup.LayoutParams params = button.getLayoutParams();
                                 params.height= WRAP_CONTENT;
-
                                 button.setText(R.string.reminder_edit_btn);
                                 button.setLayoutParams(params);
                                 button.setTextColor(getColor(R.color.colorPrimaryLight));
+
+                                LinearLayout.LayoutParams deleteBtnParams =
+                                        new LinearLayout.LayoutParams(MATCH_PARENT, dp_28);
+                                deleteBtnParams.setMargins(dp_16, 0, dp_16, dp_16);
+                                Button delete_button = new Button(getBaseContext());
+                                delete_button.setLayoutParams(deleteBtnParams);
+                                delete_button.setBackground(getDrawable(R.drawable.editbutton));
+                                ViewGroup.LayoutParams deleteBtnMoreParams = delete_button.getLayoutParams();
+                                deleteBtnMoreParams.height= WRAP_CONTENT;
+                                delete_button.setText(R.string.delete_reminder_btn);
+                                delete_button.setLayoutParams(params);
+                                delete_button.setTextColor(getColor(R.color.colorPrimaryLight));
 
                                 linearLayout.addView(title);
                                 linearLayout.addView(repeat);
                                 linearLayout.addView(atText);
                                 linearLayout.addView(button);
+                                linearLayout.addView(delete_button);
 
                                 card.addView(linearLayout);
                                 home_layout.addView(card);
-
-
                             }
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
