@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".GetActive">
+    tools:context=".PresetGetActive">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="10dp"
             android:text="Get Active"
             android:textColor="@color/colorText"
             android:textSize="32sp"
@@ -269,7 +269,8 @@
             android:layout_marginEnd="32dp"
             app:cardBackgroundColor="@color/colorPrimary"
             app:cardCornerRadius="8dp"
-            app:cardElevation="8dp">
+            app:cardElevation="8dp"
+            android:layout_marginBottom="16dp">
 
             <Button
                 android:layout_width="match_parent"

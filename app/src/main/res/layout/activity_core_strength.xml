@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".PresetMorningCompliment">
+    tools:context=".PresetCoreStrength">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,7 +19,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginStart="32dp"
             android:layout_marginTop="10dp"
-            android:text="Morning Compliment"
+            android:text="Core Strength"
             android:textColor="@color/colorText"
             android:textSize="32sp"
             android:textStyle="bold" />
@@ -42,7 +42,7 @@
                     android:layout_width="84dp"
                     android:layout_height="84dp"
                     android:layout_alignParentLeft="true"
-                    android:src="@drawable/squat_tap" />
+                    android:src="@drawable/side_vup" />
 
 
                 <TextView
@@ -52,7 +52,7 @@
                     android:layout_marginTop="18dp"
                     android:layout_marginEnd="16dp"
                     android:buttonTint="@color/colorText"
-                    android:text="Squat With Alt Floor Tap"
+                    android:text="Side To Side V-Up"
                     android:textColor="@color/colorText"
                     android:textSize="15sp"
                     android:textStyle="bold"
@@ -64,7 +64,7 @@
                     android:textSize="25sp"
                     android:layout_marginTop="20dp"
                     android:layout_marginRight="20dp"
-                    android:text="x10"
+                    android:text="x12"
                     android:textStyle="bold"
                     android:layout_alignParentRight="true"
                     android:textColor="@color/colorText" />
@@ -90,7 +90,7 @@
                     android:layout_width="84dp"
                     android:layout_height="84dp"
                     android:layout_alignParentLeft="true"
-                    android:src="@drawable/plank_kick" />
+                    android:src="@drawable/plank_tap" />
 
 
                 <TextView
@@ -100,7 +100,7 @@
                     android:layout_marginTop="18dp"
                     android:layout_marginEnd="16dp"
                     android:buttonTint="@color/colorText"
-                    android:text="Plank Kick Through"
+                    android:text="Plank Tap"
                     android:textColor="@color/colorText"
                     android:textSize="15sp"
                     android:textStyle="bold"
@@ -112,7 +112,7 @@
                     android:textSize="25sp"
                     android:layout_marginTop="20dp"
                     android:layout_marginRight="20dp"
-                    android:text="x10"
+                    android:text="x12"
                     android:textStyle="bold"
                     android:layout_alignParentRight="true"
                     android:textColor="@color/colorText" />
@@ -137,7 +137,7 @@
                     android:layout_width="84dp"
                     android:layout_height="84dp"
                     android:layout_alignParentLeft="true"
-                    android:src="@drawable/lunge_tap" />
+                    android:src="@drawable/in_out_vup" />
 
 
                 <TextView
@@ -147,7 +147,7 @@
                     android:layout_marginTop="18dp"
                     android:layout_marginEnd="16dp"
                     android:buttonTint="@color/colorText"
-                    android:text="Alt Reverse Lunge With Tap"
+                    android:text="In/Out V-Up"
                     android:textColor="@color/colorText"
                     android:textSize="15sp"
                     android:textStyle="bold"
@@ -159,7 +159,7 @@
                     android:textSize="25sp"
                     android:layout_marginTop="20dp"
                     android:layout_marginRight="20dp"
-                    android:text="x10"
+                    android:text="x12"
                     android:textStyle="bold"
                     android:layout_alignParentRight="true"
                     android:textColor="@color/colorText" />
@@ -185,7 +185,7 @@
                     android:layout_width="84dp"
                     android:layout_height="84dp"
                     android:layout_alignParentLeft="true"
-                    android:src="@drawable/plank_swing" />
+                    android:src="@drawable/plank_stack" />
 
 
                 <TextView
@@ -195,7 +195,7 @@
                     android:layout_marginTop="18dp"
                     android:layout_marginEnd="16dp"
                     android:buttonTint="@color/colorText"
-                    android:text="Reverse Plank Swing Through"
+                    android:text="Plank Pull Through With Stack"
                     android:textColor="@color/colorText"
                     android:textSize="15sp"
                     android:textStyle="bold"
@@ -207,7 +207,7 @@
                     android:textSize="25sp"
                     android:layout_marginTop="20dp"
                     android:layout_marginRight="20dp"
-                    android:text="x10"
+                    android:text="x12"
                     android:textStyle="bold"
                     android:layout_alignParentRight="true"
                     android:textColor="@color/colorText" />
@@ -232,7 +232,7 @@
                     android:layout_width="84dp"
                     android:layout_height="84dp"
                     android:layout_alignParentLeft="true"
-                    android:src="@drawable/low_high_plank" />
+                    android:src="@drawable/crunch_pass" />
 
 
                 <TextView
@@ -242,7 +242,7 @@
                     android:layout_marginTop="18dp"
                     android:layout_marginEnd="16dp"
                     android:buttonTint="@color/colorText"
-                    android:text="Plank Low To High"
+                    android:text="Double Crunch With Pass"
                     android:textColor="@color/colorText"
                     android:textSize="15sp"
                     android:textStyle="bold"
@@ -254,7 +254,7 @@
                     android:textSize="25sp"
                     android:layout_marginTop="20dp"
                     android:layout_marginRight="20dp"
-                    android:text="x10"
+                    android:text="x12"
                     android:textStyle="bold"
                     android:layout_alignParentRight="true"
                     android:textColor="@color/colorText" />

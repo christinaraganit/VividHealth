@@ -6,16 +6,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-public class GetActive extends AppCompatActivity {
+public class PresetMorningCompliment extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_get_active);
+        setContentView(R.layout.activity_morning_compliment);
     }
 
     public void onHome(View v) {
-        Intent i = new Intent(this, HomeActivity.class);
+        Intent i = new Intent(this, PresetWorkouts.class);
         startActivity(i);
     }
 }

@@ -1,6 +1,5 @@
 package ca.bcit.vividhealth;
 
-import androidx.annotation.ColorRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,38 +8,30 @@ import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.Context;
+
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.util.Calendar;
 import java.util.Objects;
 
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
@@ -183,20 +174,37 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         startActivity(i);
     }
 
+    //This will be moved when workout page created
     public void onSittingBreak(View v) {
-        Intent i = new Intent(this, SittingBreak.class);
+        Intent i = new Intent(this, PresetSittingBreak.class);
         startActivity(i);
     }
 
     public void onGetActive(View v) {
-        Intent i = new Intent(this, GetActive.class);
+        Intent i = new Intent(this, PresetGetActive.class);
         startActivity(i);
     }
 
     public void onMorningCompliment(View v) {
-        Intent i = new Intent(this, MorningCompliment.class);
+        Intent i = new Intent(this, PresetMorningCompliment.class);
         startActivity(i);
     }
+
+    public void onCoreStrength(View v) {
+        Intent i = new Intent(this, PresetCoreStrength.class);
+        startActivity(i);
+    }
+
+    public void onLegWakeup(View v) {
+        Intent i = new Intent(this, PresetLegWakeup.class);
+        startActivity(i);
+    }
+
+    public void onWorkouts(View v) {
+        Intent i = new Intent(this, PresetWorkouts.class);
+        startActivity(i);
+    }
+
 
     @Override
     protected void onStart() {

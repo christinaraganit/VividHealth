@@ -6,16 +6,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-public class SittingBreak extends AppCompatActivity {
+public class PresetGetActive extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sitting_break);
+        setContentView(R.layout.activity_get_active);
     }
 
     public void onHome(View v) {
-        Intent i = new Intent(this, HomeActivity.class);
+        Intent i = new Intent(this, PresetWorkouts.class);
         startActivity(i);
     }
 }
