@@ -15,7 +15,7 @@ public class PresetCoreStrength extends AppCompatActivity {
     }
 
     public void onHome(View v) {
-        Intent i = new Intent(this, HomeActivity.class);
+        Intent i = new Intent(this, PresetWorkouts.class);
         startActivity(i);
     }
 }

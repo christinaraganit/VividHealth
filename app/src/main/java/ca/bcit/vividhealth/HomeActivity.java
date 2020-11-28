@@ -200,6 +200,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         startActivity(i);
     }
 
+    public void onWorkouts(View v) {
+        Intent i = new Intent(this, PresetWorkouts.class);
+        startActivity(i);
+    }
+
 
     @Override
     protected void onStart() {
