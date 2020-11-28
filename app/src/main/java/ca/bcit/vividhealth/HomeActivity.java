@@ -195,6 +195,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         startActivity(i);
     }
 
+    public void onLegWakeup(View v) {
+        Intent i = new Intent(this, PresetLegWakeup.class);
+        startActivity(i);
+    }
+
 
     @Override
     protected void onStart() {

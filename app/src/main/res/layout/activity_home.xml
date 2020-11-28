@@ -83,7 +83,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#8b0000"
-                    android:onClick="onCoreStrength"
+                    android:onClick="onLegWakeup"
                     android:padding="16dp"
                     android:text="Ignore this, just tesing workouts :D"
                     android:textColor="@color/colorPrimaryLight"
