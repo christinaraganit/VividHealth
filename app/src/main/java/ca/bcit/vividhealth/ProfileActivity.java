@@ -155,7 +155,6 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
                 startActivity(intent);
                 break;
             case R.id.nav_profile:
-                System.out.println("Profile clicked");
                 intent = new Intent(this, ProfileActivity.class);
                 startActivity(intent);
                 break;
@@ -164,16 +163,17 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
                 startActivity(intent);
                 break;
             case R.id.nav_workouts:
-                System.out.println("Nav workouts clicked");
-//                intent = new Intent(this, WorkoutActivity.class);
+                intent = new Intent(this, PresetWorkouts.class);
+                startActivity(intent);
                 break;
             case R.id.nav_about:
-                System.out.println("About clicked");
-//                intent = new Intent(this, AboutActivity.class);
+                intent = new Intent(this, AboutUs.class);
+                startActivity(intent);
                 break;
             case R.id.nav_feedback:
                 System.out.println("Feedback clicked");
-//                intent = new Intent(this, FeedbackActivity.class);
+                intent = new Intent(this, SendFeedback.class);
+                startActivity(intent);
                 break;
             case R.id.nav_toggle_mode:
                 break;

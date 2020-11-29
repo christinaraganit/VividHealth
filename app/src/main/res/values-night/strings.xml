@@ -10,9 +10,6 @@
     <string name="edit_text_age">Age</string>
     <string name="edit_text_weight">Weight</string>
 
-    <string name="enabled">Enabled</string>
-    <string name="disabled">Disabled</string>
-
     <string name="add_reminder_btn">Add a new reminder</string>
     <string name="next_btn">Next</string>
 

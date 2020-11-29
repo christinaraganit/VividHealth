@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
@@ -14,6 +16,7 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,7 +26,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,9 +52,11 @@ import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 import static android.widget.LinearLayout.*;
 
-public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener  {
+public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    private ActionBarDrawerToggle mToggle;
     private FirebaseAuth mAuth;
+    private NavigationView navigationView;
     private Object FirebaseAuthInvalidUserException;
     private FirebaseFirestore database = FirebaseFirestore.getInstance();
     private FirebaseUser firebaseUser;
@@ -60,12 +67,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //Checks if user is logged in, if not returns to the login page
-        try{
+        try {
             throw Objects.requireNonNull(Objects.requireNonNull(mAuth.getCurrentUser()).reload().getException());
         } catch (Exception e) {
             mAuth = FirebaseAuth.getInstance();
             FirebaseUser currentUser = mAuth.getCurrentUser();
-            if (currentUser.reload() == FirebaseAuthInvalidUserException){
+            if (currentUser.reload() == FirebaseAuthInvalidUserException) {
                 System.out.println("no user");
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
@@ -83,7 +90,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if(task.isSuccessful()){
+                        if (task.isSuccessful()) {
                             DocumentSnapshot document = task.getResult();
                             greeting.setText(String.format("Hello, %s", document.get("Name").toString()));
                             greeting.setVisibility(View.VISIBLE);
@@ -106,18 +113,38 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
 
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         // Firebase Auth
-
 
         // Placing user reminders on the home screen
         reminders_container = findViewById(R.id.reminders_container);
 
-
-
         drawer.bringToFront();
         drawer.requestLayout();
+
+//
+//        buttonToggleDark.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                if (isChecked) {
+//                    AppCompatDelegate
+//                            .setDefaultNightMode(
+//                                    AppCompatDelegate
+//                                            .MODE_NIGHT_YES);
+//                } else {
+//                    AppCompatDelegate
+//                            .setDefaultNightMode(
+//                                    AppCompatDelegate
+//                                            .MODE_NIGHT_NO);
+//                }
+//            }
+//        });
+
+        mToggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.enabled, R.string.disabled);
+        drawer.addDrawerListener(mToggle);
+        drawer.setClickable(true);
+        mToggle.setDrawerIndicatorEnabled(true);
+        mToggle.syncState();
     }
 
     @Override
@@ -131,12 +158,23 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        navigationView.setCheckedItem(R.id.nav_toggle_mode);
+        navigationView.getMenu().performIdentifierAction(R.id.nav_toggle_mode, 0);
+        if (mToggle.onOptionsItemSelected(item)) {
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         int id = menuItem.getItemId();
         Fragment fragment = null;
         Intent intent = null;
 
-        switch(id) {
+        switch (id) {
             case R.id.nav_home:
                 System.out.println("Home clicked");
                 intent = new Intent(this, HomeActivity.class);
@@ -152,18 +190,30 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
                 break;
             case R.id.nav_workouts:
-                System.out.println("Nav workouts clicked");
-//                intent = new Intent(this, WorkoutActivity.class);
+                intent = new Intent(this, PresetWorkouts.class);
+                startActivity(intent);
                 break;
             case R.id.nav_about:
-                System.out.println("About clicked");
-//                intent = new Intent(this, AboutActivity.class);
+                intent = new Intent(this, AboutUs.class);
+                startActivity(intent);
                 break;
             case R.id.nav_feedback:
-                System.out.println("Feedback clicked");
-//                intent = new Intent(this, FeedbackActivity.class);
+                intent = new Intent(this, SendFeedback.class);
+                startActivity(intent);
                 break;
             case R.id.nav_toggle_mode:
+                MenuItem menuItem1 = navigationView.getMenu().findItem(R.id.nav_toggle_mode); // This is the menu item that contains your switch
+                Switch drawerSwitch = (Switch) menuItem1.getActionView().findViewById(R.id.drawer_switch);
+                drawerSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        if (isChecked) {
+                            Toast.makeText(HomeActivity.this, "Switch turned on", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(HomeActivity.this, "Switch turned off", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
                 break;
         }
 
@@ -223,7 +273,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser currentUser = firebaseAuth.getCurrentUser();
-                if (currentUser == null){
+                if (currentUser == null) {
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
                     finish();
@@ -238,6 +288,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         startActivity(intent);
     }
 
+<<<<<<< HEAD
     @Override
     protected void onResume() {
         super.onResume();
@@ -251,6 +302,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void loadReminders(){
+=======
+    public void loadReminders() {
+        final LinearLayout home_layout = findViewById(R.id.home_layout);
+>>>>>>> 9f6c50b13a4245bce5b7efcb465a1cbf98fe7a9d
 
         database.collection("Users").document(firebaseUser.getUid()).collection("Reminders").get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -318,7 +373,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
                                 // Title TextView
                                 LinearLayout.LayoutParams titleParams =
-                                        new LinearLayout.LayoutParams(WRAP_CONTENT,WRAP_CONTENT);
+                                        new LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT);
                                 titleParams.setMargins(dp_16, dp_16, dp_16, 0);
                                 TextView title = new TextView(getBaseContext());
                                 title.setLayoutParams(titleParams);
@@ -331,7 +386,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
                                 // Repetition TextView
                                 LinearLayout.LayoutParams repeatParams =
-                                        new LinearLayout.LayoutParams(WRAP_CONTENT,WRAP_CONTENT);
+                                        new LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT);
                                 repeatParams.setMargins(dp_16, 0, dp_16, 0);
                                 TextView repeat = new TextView(getBaseContext());
                                 repeat.setLayoutParams(repeatParams);
@@ -368,7 +423,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                                 button.setLayoutParams(btnParams);
                                 button.setBackground(getDrawable(R.drawable.editbutton));
                                 ViewGroup.LayoutParams params = button.getLayoutParams();
-                                params.height= WRAP_CONTENT;
+                                params.height = WRAP_CONTENT;
                                 button.setText(R.string.reminder_edit_btn);
                                 button.setLayoutParams(params);
                                 button.setTextColor(getColor(R.color.colorPrimaryLight));
@@ -380,7 +435,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                                 delete_button.setLayoutParams(deleteBtnParams);
                                 delete_button.setBackground(getDrawable(R.drawable.editbutton));
                                 ViewGroup.LayoutParams deleteBtnMoreParams = delete_button.getLayoutParams();
-                                deleteBtnMoreParams.height= WRAP_CONTENT;
+                                deleteBtnMoreParams.height = WRAP_CONTENT;
                                 delete_button.setText(R.string.delete_reminder_btn);
                                 delete_button.setLayoutParams(params);
                                 delete_button.setTextColor(getColor(R.color.colorPrimaryLight));

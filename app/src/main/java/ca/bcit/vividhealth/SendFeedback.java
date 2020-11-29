@@ -8,19 +8,44 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
-public class PresetWorkouts extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class SendFeedback extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_workouts);
+        setContentView(R.layout.activity_send_feedback);
+        final EditText field1 = (EditText) findViewById(R.id.field1);
+        final EditText field2 = (EditText) findViewById(R.id.field2);
+        Button btn = (Button) findViewById(R.id.send_feedback);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Intent.ACTION_SEND);
+                i.setType("message/html");
+                i.putExtra(Intent.EXTRA_EMAIL, new String("VividHealth@gmail.com"));
+                i.putExtra(Intent.EXTRA_SUBJECT, "Feedback for VividHealth");
+                i.putExtra(Intent.EXTRA_TEXT, "Topic: " + field1.getText() + "\nMessage: " +
+                        field2.getText());
+                try {
+                    startActivity(Intent.createChooser(i, "Please select Email"));
+                }
+                catch (android.content.ActivityNotFoundException e) {
+                    Toast.makeText(SendFeedback.this, "There are no Email Clients",
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -43,31 +68,6 @@ public class PresetWorkouts extends AppCompatActivity implements NavigationView.
         drawer.requestLayout();
     }
 
-    public void onSittingBreak(View v) {
-        Intent i = new Intent(this, PresetSittingBreak.class);
-        startActivity(i);
-    }
-
-    public void onGetActive(View v) {
-        Intent i = new Intent(this, PresetGetActive.class);
-        startActivity(i);
-    }
-
-    public void onMorningCompliment(View v) {
-        Intent i = new Intent(this, PresetMorningCompliment.class);
-        startActivity(i);
-    }
-
-    public void onCoreStrength(View v) {
-        Intent i = new Intent(this, PresetCoreStrength.class);
-        startActivity(i);
-    }
-
-    public void onLegWakeup(View v) {
-        Intent i = new Intent(this, PresetLegWakeup.class);
-        startActivity(i);
-    }
-
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -86,12 +86,10 @@ public class PresetWorkouts extends AppCompatActivity implements NavigationView.
 
         switch(id) {
             case R.id.nav_home:
-                System.out.println("Home clicked");
                 intent = new Intent(this, HomeActivity.class);
                 startActivity(intent);
                 break;
             case R.id.nav_profile:
-                System.out.println("Profile clicked");
                 intent = new Intent(this, ProfileActivity.class);
                 startActivity(intent);
                 break;
@@ -100,7 +98,6 @@ public class PresetWorkouts extends AppCompatActivity implements NavigationView.
                 startActivity(intent);
                 break;
             case R.id.nav_workouts:
-                System.out.println("Nav workouts clicked");
                 intent = new Intent(this, PresetWorkouts.class);
                 startActivity(intent);
                 break;
@@ -120,4 +117,5 @@ public class PresetWorkouts extends AppCompatActivity implements NavigationView.
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }

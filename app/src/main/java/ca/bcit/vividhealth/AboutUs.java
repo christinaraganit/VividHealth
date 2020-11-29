@@ -11,16 +11,18 @@ import androidx.fragment.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.net.Uri;
 import android.view.View;
+import android.widget.Button;
 
 import com.google.android.material.navigation.NavigationView;
 
-public class PresetWorkouts extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class AboutUs extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_workouts);
+        setContentView(R.layout.activity_about_us);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -41,31 +43,43 @@ public class PresetWorkouts extends AppCompatActivity implements NavigationView.
 
         drawer.bringToFront();
         drawer.requestLayout();
-    }
 
-    public void onSittingBreak(View v) {
-        Intent i = new Intent(this, PresetSittingBreak.class);
-        startActivity(i);
-    }
+        Button chris_github = findViewById(R.id.chris_github_btn);
+        Button asher_github = findViewById(R.id.asher_github_btn);
+        Button zoltan_github = findViewById(R.id.zoltan_github_btn);
 
-    public void onGetActive(View v) {
-        Intent i = new Intent(this, PresetGetActive.class);
-        startActivity(i);
-    }
+        chris_github.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                intent.setData(Uri.parse("https://github.com/christinaraganit"));
+                startActivity(intent);
+            }
+        });
 
-    public void onMorningCompliment(View v) {
-        Intent i = new Intent(this, PresetMorningCompliment.class);
-        startActivity(i);
-    }
+        asher_github.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                intent.setData(Uri.parse("https://github.com/AsherGum"));
+                startActivity(intent);
+            }
+        });
 
-    public void onCoreStrength(View v) {
-        Intent i = new Intent(this, PresetCoreStrength.class);
-        startActivity(i);
-    }
-
-    public void onLegWakeup(View v) {
-        Intent i = new Intent(this, PresetLegWakeup.class);
-        startActivity(i);
+        zoltan_github.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                intent.setData(Uri.parse("https://github.com/zoltanbi"));
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -86,12 +100,10 @@ public class PresetWorkouts extends AppCompatActivity implements NavigationView.
 
         switch(id) {
             case R.id.nav_home:
-                System.out.println("Home clicked");
                 intent = new Intent(this, HomeActivity.class);
                 startActivity(intent);
                 break;
             case R.id.nav_profile:
-                System.out.println("Profile clicked");
                 intent = new Intent(this, ProfileActivity.class);
                 startActivity(intent);
                 break;
@@ -100,7 +112,6 @@ public class PresetWorkouts extends AppCompatActivity implements NavigationView.
                 startActivity(intent);
                 break;
             case R.id.nav_workouts:
-                System.out.println("Nav workouts clicked");
                 intent = new Intent(this, PresetWorkouts.class);
                 startActivity(intent);
                 break;
@@ -120,4 +131,5 @@ public class PresetWorkouts extends AppCompatActivity implements NavigationView.
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }

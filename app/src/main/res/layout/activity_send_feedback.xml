@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/drawer_layout"
+    android:background="@color/backgroundColor"
+    android:orientation="vertical"
+    tools:context=".SendFeedback">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+        <include
+            layout="@layout/toolbar"
+            android:id="@+id/toolbar" />
+        <FrameLayout
+            android:id="@+id/content_frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        android:padding="40dp">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center|top">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Give some feedback"
+                android:textColor="@color/textColor"
+                android:textSize="32sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="20dp"
+                android:hint="Topic"
+                android:textSize="20dp"
+                android:textColorHint="@color/textColor"
+                android:textColor="@color/textColor"
+                android:id="@+id/field1"
+                android:drawablePadding="12dp"
+                android:background="@drawable/custom_input"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginTop="20dp"
+                android:paddingTop="10dp"
+                android:hint="Feedback"
+                android:textColorHint="@color/textColor"
+                android:layout_below="@id/field1"
+                android:textSize="20dp"
+                android:textColor="@color/textColor"
+                android:id="@+id/field2"
+                android:background="@drawable/custom_input"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:gravity="top|left"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Send Feedback"
+                android:id="@+id/send_feedback"
+                android:textSize="20dp"
+                android:textColor="@color/colorPrimaryLight"
+                android:background="@color/colorPrimary"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </ScrollView>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/toolbar_header"
+        app:menu="@menu/menu_nav" />
+
+</androidx.drawerlayout.widget.DrawerLayout>
