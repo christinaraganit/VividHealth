@@ -2,6 +2,7 @@ package ca.bcit.vividhealth;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SwitchCompat;
@@ -11,6 +12,9 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
@@ -29,6 +33,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -38,6 +44,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.ParseException;
+import java.util.Calendar;
 import java.util.Objects;
 
 import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
@@ -53,7 +61,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private FirebaseFirestore database = FirebaseFirestore.getInstance();
     private FirebaseUser firebaseUser;
     private String TAG = "";
-    LinearLayout home_layout;
+    LinearLayout reminders_container;
     private Menu menu;
 
     @Override
@@ -95,84 +103,22 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        SharedPreferences sharedPreferences
-                = getSharedPreferences(
-                "sharedPrefs", MODE_PRIVATE);
-        final SharedPreferences.Editor editor
-                = sharedPreferences.edit();
-        final boolean isDarkModeOn
-                = sharedPreferences
-                .getBoolean(
-                        "isDarkModeOn", false);
-
-        navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
-        MenuItem menuItem1 = navigationView.getMenu().findItem(R.id.nav_toggle_mode); // This is the menu item that contains your switch
-        final Switch drawerSwitch = (Switch) menuItem1.getActionView().findViewById(R.id.drawer_switch);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this,
                 drawer,
                 toolbar,
                 R.string.nav_open_drawer,
                 R.string.nav_close_drawer);
-
         drawer.addDrawerListener(toggle);
-        drawer.addDrawerListener(new DrawerLayout.DrawerListener() {
-            @Override
-            public void onDrawerSlide(@NonNull View drawerView, float slideOffset) {
-
-            }
-
-            @Override
-            public void onDrawerOpened(@NonNull View drawerView) {
-                if (isDarkModeOn) {
-                    drawerSwitch.setChecked(true);
-                    AppCompatDelegate
-                            .setDefaultNightMode(
-                                    AppCompatDelegate
-                                            .MODE_NIGHT_YES);
-                }
-                else {
-                    drawerSwitch.setChecked(false);
-                    AppCompatDelegate
-                            .setDefaultNightMode(
-                                    AppCompatDelegate
-                                            .MODE_NIGHT_NO);
-                }
-            }
-
-            @Override
-            public void onDrawerClosed(@NonNull View drawerView) {
-
-            }
-
-            @Override
-            public void onDrawerStateChanged(int newState) {
-
-            }
-        });
         toggle.syncState();
-        if (isDarkModeOn) {
-            drawerSwitch.setChecked(true);
-            AppCompatDelegate
-                    .setDefaultNightMode(
-                            AppCompatDelegate
-                                    .MODE_NIGHT_YES);
-        }
-        else {
-            drawerSwitch.setChecked(false);
-            AppCompatDelegate
-                    .setDefaultNightMode(
-                            AppCompatDelegate
-                                    .MODE_NIGHT_NO);
-        }
 
+
+        navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
         // Firebase Auth
 
         // Placing user reminders on the home screen
-        home_layout = findViewById(R.id.home_layout);
-        loadReminders();
+        reminders_container = findViewById(R.id.reminders_container);
 
         drawer.bringToFront();
         drawer.requestLayout();
@@ -194,59 +140,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 //            }
 //        });
 
-        Log.d("giraffe", "What's up! 1");
-
         mToggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.enabled, R.string.disabled);
         drawer.addDrawerListener(mToggle);
         drawer.setClickable(true);
         mToggle.setDrawerIndicatorEnabled(true);
         mToggle.syncState();
-
-        // THE CODE THAT WORKS :D
-//        MenuItem menuItem1 = navigationView.getMenu().findItem(R.id.nav_toggle_mode); // This is the menu item that contains your switch
-//        Switch drawerSwitch = (Switch) menuItem1.getActionView().findViewById(R.id.drawer_switch);
-//        drawerSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                if (isChecked) {
-//                    Toast.makeText(HomeActivity.this, "Switch turned on", Toast.LENGTH_SHORT).show();
-//                    AppCompatDelegate
-//                            .setDefaultNightMode(
-//                                    AppCompatDelegate
-//                                            .MODE_NIGHT_YES);
-//                } else {
-//                    Toast.makeText(HomeActivity.this, "Switch turned off", Toast.LENGTH_SHORT).show();
-//                    AppCompatDelegate
-//                            .setDefaultNightMode(
-//                                    AppCompatDelegate
-//                                            .MODE_NIGHT_NO);
-//                }
-//            }
-//        });
-
-
-        drawerSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    AppCompatDelegate
-                            .setDefaultNightMode(
-                                    AppCompatDelegate
-                                            .MODE_NIGHT_YES);
-                    editor.putBoolean(
-                            "isDarkModeOn", true);
-                    editor.apply();
-                } else {
-                    AppCompatDelegate
-                            .setDefaultNightMode(
-                                    AppCompatDelegate
-                                            .MODE_NIGHT_NO);
-                    editor.putBoolean(
-                            "isDarkModeOn", false);
-                    editor.apply();
-                }
-            }
-        });
     }
 
     @Override
@@ -276,8 +174,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         Fragment fragment = null;
         Intent intent = null;
 
-        Log.d("giraffe", "id: "+ id + " nav_toggle id: " + R.id.nav_toggle_mode);
-
         switch (id) {
             case R.id.nav_home:
                 System.out.println("Home clicked");
@@ -298,13 +194,26 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
                 break;
             case R.id.nav_about:
-                Log.d("giraffe", "What's up!4");
                 intent = new Intent(this, AboutUs.class);
                 startActivity(intent);
                 break;
             case R.id.nav_feedback:
                 intent = new Intent(this, SendFeedback.class);
                 startActivity(intent);
+                break;
+            case R.id.nav_toggle_mode:
+                MenuItem menuItem1 = navigationView.getMenu().findItem(R.id.nav_toggle_mode); // This is the menu item that contains your switch
+                Switch drawerSwitch = (Switch) menuItem1.getActionView().findViewById(R.id.drawer_switch);
+                drawerSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        if (isChecked) {
+                            Toast.makeText(HomeActivity.this, "Switch turned on", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(HomeActivity.this, "Switch turned off", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
                 break;
         }
 
@@ -379,15 +288,30 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         startActivity(intent);
     }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+//        Intent alarmIntent = new Intent(getApplicationContext(), AlarmBroadcaster.class);
+//        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+//        PendingIntent displayIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, alarmIntent, 0);
+//        alarmManager.cancel(displayIntent);
+        reminders_container.removeAllViews();
+        loadReminders();
+
+    }
+
+
     public void loadReminders() {
         final LinearLayout home_layout = findViewById(R.id.home_layout);
+
 
         database.collection("Users").document(firebaseUser.getUid()).collection("Reminders").get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
+                            for (final QueryDocumentSnapshot document : task.getResult()) {
 
                                 // Building all the dp values
                                 int dp_8 = (int) TypedValue.applyDimension(
@@ -410,11 +334,30 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                                         TypedValue.COMPLEX_UNIT_DIP, 32, getResources()
                                                 .getDisplayMetrics());
 
+
+
+                                //Set Up Alarm
+                                String title_t = document.getData().get("title").toString().trim();
+                                int hour = Integer.parseInt(document.getData()
+                                        .get("time_hour").toString());
+                                int minute = Integer.parseInt(document.getData()
+                                        .get("time_minute").toString());
+
+                                //Set up Notification
+                                Calendar calendar = Calendar.getInstance();
+                                calendar.setTimeInMillis(System.currentTimeMillis());
+                                calendar.set(Calendar.SECOND, 0);
+                                calendar.set(Calendar.HOUR_OF_DAY, hour);
+                                calendar.set(Calendar.MINUTE, minute);
+                                new AlarmReceiver(getApplicationContext(), hour, minute, title_t,
+                                        document.getData().get("repeat").toString(), calendar);
+
+
                                 // Card View
                                 LinearLayout.LayoutParams cardParams =
                                         new LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT);
-                                cardParams.setMargins(dp_32, dp_8, dp_32, dp_8);
-                                CardView card = new CardView(getBaseContext());
+                                cardParams.setMargins(dp_32, dp_8, dp_32, dp_16);
+                                final CardView card = new CardView(getBaseContext());
                                 card.setLayoutParams(cardParams);
                                 card.setCardBackgroundColor(getColor(R.color.colorAccent));
                                 card.setRadius(dp_8);
@@ -436,7 +379,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                                 title.setTextColor(getColor(R.color.colorText));
                                 title.setTypeface(Typeface.DEFAULT_BOLD);
                                 title.setTextSize(20);
-                                title.setText(document.getData().get("title").toString());
+                                title.setText(title_t);
+
+
 
                                 // Repetition TextView
                                 LinearLayout.LayoutParams repeatParams =
@@ -449,21 +394,31 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                                 repeat.setTextColor(getColor(R.color.colorText));
 
                                 // At TextView
+
                                 LinearLayout.LayoutParams atParams =
                                         new LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT);
                                 atParams.setMargins(dp_16, 0, dp_16, dp_8);
                                 TextView atText = new TextView(getBaseContext());
                                 atText.setLayoutParams(atParams);
                                 atText.setTextColor(getColor(R.color.colorText));
+                                String minutes = "" + minute;
+                                if (minute < 10){
+                                    minutes = "0" + minute;
+                                }
                                 atText.setText(String.format("At %s:%s", document.getData()
-                                        .get("time_hour"), document.getData()
-                                        .get("time_minute")));
+                                        .get("time_hour"), minutes));
 
                                 // Button
                                 LinearLayout.LayoutParams btnParams =
                                         new LinearLayout.LayoutParams(MATCH_PARENT, dp_28);
                                 btnParams.setMargins(dp_16, 0, dp_16, dp_8);
                                 Button button = new Button(getBaseContext());
+                                button.setOnClickListener(new OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+
+                                    }
+                                });
                                 button.setLayoutParams(btnParams);
                                 button.setBackground(getDrawable(R.drawable.editbutton));
                                 ViewGroup.LayoutParams params = button.getLayoutParams();
@@ -483,7 +438,58 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                                 delete_button.setText(R.string.delete_reminder_btn);
                                 delete_button.setLayoutParams(params);
                                 delete_button.setTextColor(getColor(R.color.colorPrimaryLight));
+                                delete_button.setOnClickListener(new OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        AlertDialog.Builder builder = new AlertDialog.Builder(HomeActivity.this);
 
+
+                                        builder.setCancelable(true);
+                                        builder.setTitle("Delete Reminder");
+                                        builder.setMessage("Are you sure you want to delete this reminder?");
+                                        builder.setPositiveButton("Confirm",
+                                                new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialog, int which) {
+
+                                                        database.collection("Users")
+                                                                .document(firebaseUser.getUid())
+                                                                .collection("Reminders")
+                                                                .document(document.getId())
+                                                                .delete()
+                                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                    @Override
+                                                                    public void onSuccess(Void aVoid) {
+                                                                        Log.d(TAG, "DocumentSnapshot successfully deleted!");
+                                                                        Toast.makeText(getBaseContext(), "Reminder Deleted.", Toast.LENGTH_SHORT).show();
+                                                                        reminders_container.removeView(card);
+                                                                    }
+                                                                })
+                                                                .addOnFailureListener(new OnFailureListener() {
+                                                                    @Override
+                                                                    public void onFailure(@NonNull Exception e) {
+                                                                        Log.w(TAG, "Error deleting document", e);
+                                                                        Toast.makeText(getBaseContext(), "Failed to delete reminder.", Toast.LENGTH_SHORT).show();
+                                                                    }
+                                                                });
+
+                                                    }
+                                                });
+                                        builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                dialog.cancel();
+                                            }
+                                        });
+
+                                        AlertDialog dialog = builder.create();
+                                        dialog.show();
+
+                                        dialog.getButton(dialog.BUTTON_NEGATIVE).setTextColor(getColor(R.color.colorText));
+                                        dialog.getButton(dialog.BUTTON_POSITIVE).setTextColor(getColor(R.color.colorPrimary));
+
+                                    }
+                                });
                                 linearLayout.addView(title);
                                 linearLayout.addView(repeat);
                                 linearLayout.addView(atText);
@@ -491,7 +497,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                                 linearLayout.addView(delete_button);
 
                                 card.addView(linearLayout);
-                                home_layout.addView(card);
+                                reminders_container.addView(card);
                             }
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
@@ -499,6 +505,4 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                     }
                 });
     }
-
-
 }
