@@ -416,6 +416,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                                 button.setOnClickListener(new OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
+                                        Intent intent = new Intent(getBaseContext(), EditReminder.class);
+                                        intent.putExtra("ID", document.getId());
+                                        startActivity(intent);
 
                                     }
                                 });

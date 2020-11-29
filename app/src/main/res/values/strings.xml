@@ -14,6 +14,7 @@
     <string name="disabled">Disabled</string>
 
     <string name="add_reminder_btn">Add a new reminder</string>
+    <string name="edit_reminder">Edit Reminder</string>
     <string name="next_btn">Next</string>
 
     <string name="app_greeting">Hello, user!</string>
@@ -36,6 +37,8 @@
     <string name="new_reminder_title">Title of your new reminder</string>
     <string name="new_reminder_time_start">When would you like to begin this reminder?</string>
     <string name="new_reminder_time_end">When would you like to end this reminder?</string>
+
+    <string name="old_reminder_title">New title for your reminder</string>
 
     <string name="new_reminder_frequency_option_1">Every week</string>
     <string name="new_reminder_frequency_option_2">Every 3 days</string>
