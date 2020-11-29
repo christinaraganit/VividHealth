@@ -95,7 +95,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                             DocumentSnapshot document = task.getResult();
                             greeting.setText(String.format("Hello, %s", document.get("Name").toString()));
                             greeting.setVisibility(View.VISIBLE);
-
                         }
                     }
                 });

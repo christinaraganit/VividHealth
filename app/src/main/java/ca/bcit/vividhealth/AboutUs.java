@@ -34,6 +34,43 @@ public class AboutUs extends AppCompatActivity implements NavigationView.OnNavig
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        Button chris_github = findViewById(R.id.chris_github_btn);
+        Button asher_github = findViewById(R.id.asher_github_btn);
+        Button zoltan_github = findViewById(R.id.zoltan_github_btn);
+
+        chris_github.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                intent.setData(Uri.parse("https://github.com/christinaraganit"));
+                startActivity(intent);
+            }
+        });
+
+        asher_github.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                intent.setData(Uri.parse("https://github.com/AsherGum"));
+                startActivity(intent);
+            }
+        });
+
+        zoltan_github.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                intent.setData(Uri.parse("https://github.com/zoltanbi"));
+                startActivity(intent);
+            }
+        });
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         SharedPreferences sharedPreferences
                 = getSharedPreferences(
@@ -176,46 +213,6 @@ public class AboutUs extends AppCompatActivity implements NavigationView.OnNavig
                             "isDarkModeOn", false);
                     editor.apply();
                 }
-            }
-        });
-
-        drawer.bringToFront();
-        drawer.requestLayout();
-
-        Button chris_github = findViewById(R.id.chris_github_btn);
-        Button asher_github = findViewById(R.id.asher_github_btn);
-        Button zoltan_github = findViewById(R.id.zoltan_github_btn);
-
-        chris_github.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_VIEW);
-                intent.addCategory(Intent.CATEGORY_BROWSABLE);
-                intent.setData(Uri.parse("https://github.com/christinaraganit"));
-                startActivity(intent);
-            }
-        });
-
-        asher_github.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_VIEW);
-                intent.addCategory(Intent.CATEGORY_BROWSABLE);
-                intent.setData(Uri.parse("https://github.com/AsherGum"));
-                startActivity(intent);
-            }
-        });
-
-        zoltan_github.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_VIEW);
-                intent.addCategory(Intent.CATEGORY_BROWSABLE);
-                intent.setData(Uri.parse("https://github.com/zoltanbi"));
-                startActivity(intent);
             }
         });
     }
