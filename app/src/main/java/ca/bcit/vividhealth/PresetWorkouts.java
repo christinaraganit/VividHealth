@@ -105,11 +105,10 @@ public class PresetWorkouts extends AppCompatActivity implements NavigationView.
                 startActivity(intent);
                 break;
             case R.id.nav_about:
-                System.out.println("About clicked");
-//                intent = new Intent(this, AboutActivity.class);
+                intent = new Intent(this, AboutUs.class);
+                startActivity(intent);
                 break;
             case R.id.nav_feedback:
-                System.out.println("Feedback clicked");
                 intent = new Intent(this, SendFeedback.class);
                 startActivity(intent);
                 break;

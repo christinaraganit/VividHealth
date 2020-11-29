@@ -152,7 +152,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
                 break;
             case R.id.nav_feedback:
-                System.out.println("Feedback clicked");
                 intent = new Intent(this, SendFeedback.class);
                 startActivity(intent);
                 break;

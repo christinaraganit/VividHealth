@@ -120,7 +120,8 @@ public class AboutUs extends AppCompatActivity implements NavigationView.OnNavig
                 startActivity(intent);
                 break;
             case R.id.nav_feedback:
-//                intent = new Intent(this, FeedbackActivity.class);
+                intent = new Intent(this, SendFeedback.class);
+                startActivity(intent);
                 break;
             case R.id.nav_toggle_mode:
                 break;
