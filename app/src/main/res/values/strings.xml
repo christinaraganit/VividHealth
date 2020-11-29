@@ -49,7 +49,7 @@
     <string name="toolbar_author">Barack Obama</string>
     <string name="toolbar_photographer">Photograph by Aarn Giri</string>
     <string name="nav_profile">Profile</string>
-    <string name="nav_reminders">Reminders</string>
+    <string name="nav_reminders">Add new reminder</string>
     <string name="nav_workouts">Workouts</string>
     <string name="your_routine">Your routine</string>
     <string name="nav_contact">Contact</string>

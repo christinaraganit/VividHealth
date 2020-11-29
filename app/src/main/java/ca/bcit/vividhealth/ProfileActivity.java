@@ -165,7 +165,8 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
                 break;
             case R.id.nav_workouts:
                 System.out.println("Nav workouts clicked");
-//                intent = new Intent(this, WorkoutActivity.class);
+                intent = new Intent(this, PresetWorkouts.class);
+                startActivity(intent);
                 break;
             case R.id.nav_about:
                 System.out.println("About clicked");

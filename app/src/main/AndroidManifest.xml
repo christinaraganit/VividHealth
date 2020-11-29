@@ -32,13 +32,13 @@
         <activity android:name=".UserInfoActivity"/>
         <activity android:name=".SignUpActivity" />
         <activity android:name=".WorkoutPlan" />
-        <activity android:name=".PresetWorkouts" />
+        <activity android:name=".PresetWorkouts" android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".PresetSittingBreak" />
         <activity android:name=".PresetGetActive" />
         <activity android:name=".PresetMorningCompliment" />
         <activity android:name=".PresetCoreStrength" />
         <activity android:name=".PresetLegWakeup" />
-        <activity android:name=".NewReminderActivity" />
+        <activity android:name=".NewReminderActivity" android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".ProfileActivity" android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".HomeActivity" android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".MainActivity">
