@@ -84,6 +84,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_home);
 
         final TextView greeting = findViewById(R.id.greeting);
+        reminders_container = findViewById(R.id.reminders_container);
 
         firebaseUser = mAuth.getCurrentUser();
         database.collection("Users").document(firebaseUser.getUid()).get()
@@ -393,10 +394,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onResume() {
         super.onResume();
-//        Intent alarmIntent = new Intent(getApplicationContext(), AlarmBroadcaster.class);
-//        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-//        PendingIntent displayIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, alarmIntent, 0);
-//        alarmManager.cancel(displayIntent);
         reminders_container.removeAllViews();
         loadReminders();
 
