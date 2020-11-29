@@ -81,8 +81,6 @@ public class NewReminderActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
 
-                        new SetAlarm().alarmSetter(getApplicationContext(), time.getHour(), time.getMinute(), title.getText().toString());
-
                         Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                         startActivity(intent);
                         String messageText="Your reminder was created.";

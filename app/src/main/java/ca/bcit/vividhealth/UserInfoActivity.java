@@ -16,7 +16,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class UserInfoActivity extends AppCompatActivity {
-    User user;
     EditText user_name;
     EditText user_age;
     EditText user_weight;
