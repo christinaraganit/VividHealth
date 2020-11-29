@@ -86,12 +86,10 @@ public class SendFeedback extends AppCompatActivity implements NavigationView.On
 
         switch(id) {
             case R.id.nav_home:
-                System.out.println("Home clicked");
                 intent = new Intent(this, HomeActivity.class);
                 startActivity(intent);
                 break;
             case R.id.nav_profile:
-                System.out.println("Profile clicked");
                 intent = new Intent(this, ProfileActivity.class);
                 startActivity(intent);
                 break;
@@ -108,7 +106,6 @@ public class SendFeedback extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
                 break;
             case R.id.nav_feedback:
-                System.out.println("Feedback clicked");
                 intent = new Intent(this, SendFeedback.class);
                 startActivity(intent);
                 break;
@@ -120,4 +117,5 @@ public class SendFeedback extends AppCompatActivity implements NavigationView.On
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }
