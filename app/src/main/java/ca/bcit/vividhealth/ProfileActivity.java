@@ -174,7 +174,8 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
                 break;
             case R.id.nav_feedback:
                 System.out.println("Feedback clicked");
-//                intent = new Intent(this, FeedbackActivity.class);
+                intent = new Intent(this, SendFeedback.class);
+                startActivity(intent);
                 break;
             case R.id.nav_toggle_mode:
                 break;
