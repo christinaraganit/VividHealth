@@ -7,6 +7,6 @@
     <color name="colorAccent">#DEF2F1</color>
     <color name="colorPrimaryLight">#FEFFFF</color>
 
-    <color name="backgroundColor">#FEFFFF</color>
-    <color name="textColor">#202F40</color>
+    <color name="backgroundColor">#202F40</color>
+    <color name="textColor">#FEFFFF</color>
 </resources>

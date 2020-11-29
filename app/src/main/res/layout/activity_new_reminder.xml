@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/drawer_layout"
-    android:background="@color/colorPrimaryLight"
+    android:background="@color/backgroundColor"
     android:orientation="vertical"
     tools:context=".NewReminderActivity">
 
@@ -40,7 +40,7 @@
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="32dp"
                 android:text="@string/app_new_reminder"
-                android:textColor="@color/colorText"
+                android:textColor="@color/textColor"
                 android:textSize="36sp"
                 android:textStyle="bold" />
 
@@ -54,7 +54,8 @@
                 android:backgroundTint="@color/colorPrimary"
                 android:ems="10"
                 android:hint="@string/new_reminder_title"
-                android:textColorHint="@color/colorText" />
+                android:textColor="@color/textColor"
+                android:textColorHint="@color/textColor" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -158,8 +159,9 @@
                 android:layout_marginEnd="32dp"
                 android:backgroundTint="@color/colorPrimary"
                 android:ems="10"
+                android:textStyle="bold"
                 android:hint="@string/new_reminder_time_end"
-                android:textColorHint="@color/colorText" />
+                android:textColorHint="@color/textColor" />
 
             <TimePicker
                 android:id="@+id/r_time"

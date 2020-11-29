@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/drawer_layout"
-    android:background="@color/colorPrimaryLight"
+    android:background="@color/backgroundColor"
     android:orientation="vertical"
     tools:context=".SendFeedback">
 
@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="Give some feedback"
-                android:textColor="@color/colorText"
+                android:textColor="@color/textColor"
                 android:textSize="32sp"
                 android:textStyle="bold" />
 
@@ -50,7 +50,8 @@
                 android:layout_marginTop="20dp"
                 android:hint="Topic"
                 android:textSize="20dp"
-                android:textColor="@color/colorText"
+                android:textColorHint="@color/textColor"
+                android:textColor="@color/textColor"
                 android:id="@+id/field1"
                 android:drawablePadding="12dp"
                 android:background="@drawable/custom_input"
@@ -63,9 +64,10 @@
                 android:layout_marginTop="20dp"
                 android:paddingTop="10dp"
                 android:hint="Feedback"
+                android:textColorHint="@color/textColor"
                 android:layout_below="@id/field1"
                 android:textSize="20dp"
-                android:textColor="@color/colorText"
+                android:textColor="@color/textColor"
                 android:id="@+id/field2"
                 android:background="@drawable/custom_input"
                 android:paddingStart="12dp"
