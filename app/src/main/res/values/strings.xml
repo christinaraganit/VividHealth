@@ -61,4 +61,14 @@
     <string name="nav_close_drawer">Close navigation drawer</string>
     <string name="nav_home">Home</string>
     <string name="delete_reminder_btn">Delete reminder</string>
+    <string name="aboutus_title">Meet the developers</string>
+    <string name="aboutus_description">Three CST students with big dreams trying to take the tech world by storm by developing one app at a time.\nWe at Vivid Health would like to thank our wonderful COMP 3717 instructors, Stack Overflow, and the Android Studio documentation for making this possible.</string>
+    <string name="dev1">Chris</string>
+    <string name="dev2">Asher</string>
+    <string name="dev3">Zoltan</string>
+    <string name="dev3description">Zoltan add your thing here :p</string>
+    <string name="dev2description">Asher add your thing here :p</string>
+    <string name="dev1description">An aspiring frontend developer who considers herself very,
+        <i>very</i> passionate about all things related to pasta.</string>
+    <string name="github_btn">GITHUB</string>
 </resources>
