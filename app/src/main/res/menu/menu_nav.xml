@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/backgroundColor"
     android:id="@+id/menu">
     <group
         android:checkableBehavior="single"
@@ -35,16 +36,11 @@
                 android:id="@+id/nav_feedback"
                 android:icon="@drawable/ic_feedback"
                 android:title="@string/nav_feedback" />
-    </group>
 
-    <item
-        android:title="@string/layout">
-        <menu>
-            <item
-                android:id="@+id/nav_toggle_mode"
-                android:title="@string/nav_toggle"
-                app:actionLayout="@layout/layout_switch"/>
-        </menu>
-    </item>
+        <item
+            android:id="@+id/nav_toggle_mode"
+            android:title="@string/nav_toggle"
+            app:actionLayout="@layout/layout_switch"/>
+    </group>
 
 </menu>

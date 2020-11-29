@@ -165,13 +165,14 @@
 
             <TimePicker
                 android:id="@+id/r_time"
-                android:timePickerMode="spinner"
+                android:layout_marginTop="8dp"
+                android:timePickerMode="clock"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:headerBackground="@color/colorPrimary"
                 android:numbersBackgroundColor="@color/colorPrimary"
                 android:numbersSelectorColor="@color/colorPrimaryDark"
-                android:numbersTextColor="@color/colorPrimaryLight">
+                android:numbersTextColor="@color/textColor">
 
             </TimePicker>
 
