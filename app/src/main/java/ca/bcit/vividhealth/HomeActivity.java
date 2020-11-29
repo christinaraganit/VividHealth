@@ -288,7 +288,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         startActivity(intent);
     }
 
-<<<<<<< HEAD
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -301,11 +301,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    public void loadReminders(){
-=======
+
     public void loadReminders() {
         final LinearLayout home_layout = findViewById(R.id.home_layout);
->>>>>>> 9f6c50b13a4245bce5b7efcb465a1cbf98fe7a9d
+
 
         database.collection("Users").document(firebaseUser.getUid()).collection("Reminders").get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

@@ -67,7 +67,7 @@
                     android:textSize="16sp" />
 
             </androidx.cardview.widget.CardView>
-<<<<<<< HEAD
+
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -98,8 +98,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
             </LinearLayout>
-=======
->>>>>>> 9f6c50b13a4245bce5b7efcb465a1cbf98fe7a9d
+
         </LinearLayout>
     </ScrollView>
 

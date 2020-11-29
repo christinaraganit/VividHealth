@@ -3,14 +3,13 @@
     package="ca.bcit.vividhealth">
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-<<<<<<< HEAD
 
     //You need the permision to set the alarm
     <uses-permission android:name="your.package.alarm.permission.SET_ALARM" />
     //And you need the permision to listen the boot
-=======
+
     <uses-permission android:name="your.package.alarm.permission.SET_ALARM" />
->>>>>>> 9f6c50b13a4245bce5b7efcb465a1cbf98fe7a9d
+
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
@@ -20,18 +19,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-<<<<<<< HEAD
+
         <service android:name=".ClosingService"
             android:stopWithTask="false"/>
         <activity android:name=".UserInfoActivity"/>
-=======
-        <!-- This is the receiver you called when the alarm was executed -->
-        <receiver android:name=".AlarmBroadcaster" /> <!-- This is the service that will run when the alarm time is reached -->
-        <service
-            android:name=".NotificationTrigger"
-            android:exported="false" /> <!-- You see how the filter here is boot completed, that is why that receiver works, cause you declared the filter here -->
-        <activity android:name=".UserInfoActivity" />
->>>>>>> 9f6c50b13a4245bce5b7efcb465a1cbf98fe7a9d
+
         <activity android:name=".SignUpActivity" />
         <activity android:name=".WorkoutPlan" />
         <activity android:name=".SendFeedback" android:theme="@style/AppTheme.NoActionBar"/>
