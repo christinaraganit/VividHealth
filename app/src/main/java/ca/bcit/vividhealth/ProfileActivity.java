@@ -73,17 +73,6 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
                     }
                 });
 
-        // Finds you button from the xml layout file
-        Button createNotificationButton = findViewById(R.id.notify);
-
-        // Waits for you to click the button
-        createNotificationButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Starts the function below
-                addNotification();
-            }
-        });
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -234,39 +223,6 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
         });
     }
 
-    private void addNotification() {
-
-        // Get id & message
-        int notificationId = 0;
-
-        // Call MainActivity when notification is tapped.
-        Intent mainIntent = new Intent(getApplicationContext(), ProfileActivity.class);
-        PendingIntent contentIntent = PendingIntent.getActivity(getApplicationContext(), 0, mainIntent, 0);
-
-        // NotificationManager
-        NotificationManager notificationManager =
-                (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            // For API 26 and above
-            CharSequence channelName = "My Notification";
-            int importance = NotificationManager.IMPORTANCE_DEFAULT;
-
-            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, channelName, importance);
-            notificationManager.createNotificationChannel(channel);
-        }
-
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID)
-                .setSmallIcon(android.R.drawable.ic_dialog_info)
-                .setContentTitle("TITLE")
-                .setContentText("message")
-                .setContentIntent(contentIntent)
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                .setAutoCancel(true);
-
-        // Notify
-        notificationManager.notify(notificationId, builder.build());
-    }
 
     @Override
     public void onBackPressed() {

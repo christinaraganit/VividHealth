@@ -66,6 +66,8 @@ public class SignUpActivity extends AppCompatActivity {
                                 userMap.put("Weight", 0);
                                 userMap.put("Email", user.getEmail());
                                 userMap.put("timestamp", FieldValue.serverTimestamp());
+                                userMap.put("waterCount", 0);
+                                userMap.put("postureCount", 0);
 
 
 
