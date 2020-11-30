@@ -63,6 +63,7 @@
                 android:columnCount="2">
 
                 <LinearLayout
+                    android:id="@+id/waterImg"
                     android:background="@drawable/box"
                     android:orientation="vertical"
                     android:layout_width="0dp"
@@ -119,6 +120,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/postureImg"
                     android:background="@drawable/box"
                     android:orientation="vertical"
                     android:layout_width="0dp"

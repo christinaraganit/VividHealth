@@ -27,6 +27,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -63,6 +64,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private String TAG = "";
     LinearLayout reminders_container;
     private Menu menu;
+    int waterTracker;
+    int postureTracker;
+    TextView waterTrackerText;
+    TextView postureTrackerText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +87,15 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        waterTracker = 0;
+        postureTracker = 0;
+
+        waterTrackerText = findViewById(R.id.water_count);
+        postureTrackerText = findViewById(R.id.posture_count);
+
+        LinearLayout water = findViewById(R.id.waterImg);
+        LinearLayout posture = findViewById(R.id.postureImg);
 
         final TextView greeting = findViewById(R.id.greeting);
         reminders_container = findViewById(R.id.reminders_container);
@@ -104,10 +118,61 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                             } else {
                                 greeting.setText(String.format("Hello, %s", document.get("Name").toString()));
                                 greeting.setVisibility(View.VISIBLE);
+
+                                waterTracker = Integer.parseInt(document.get("waterCount").toString());
+                                postureTracker = Integer.parseInt(document.get("postureCount").toString());
+                                waterTrackerText.setText(document.get("waterCount").toString());
+                                postureTrackerText.setText(document.get("postureCount").toString());
+
+
                             }
                         }
                     }
                 });
+
+        water.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                waterTracker = waterTracker + 1;
+                waterTrackerText.setText(String.format("%s", waterTracker));
+                database.collection("Users").document(firebaseUser.getUid())
+                        .update("waterCount", waterTracker)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                    }
+                });
+
+            }
+        });
+
+        posture.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                postureTracker = postureTracker + 1;
+                postureTrackerText.setText(String.format("%s", postureTracker));
+                database.collection("Users").document(firebaseUser.getUid())
+                        .update("postureCount", postureTracker)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                    }
+                });
+
+            }
+        });
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -405,8 +470,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         super.onResume();
         reminders_container.removeAllViews();
         loadReminders();
-
     }
+
+
 
 
     public void loadReminders() {

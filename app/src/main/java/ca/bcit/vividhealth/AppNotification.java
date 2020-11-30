@@ -55,8 +55,9 @@ public abstract class AppNotification extends TimerTask {
 
         // Notify
         notificationManager.notify(notificationId, builder.build());
-
     }
+
+
 
 
 }

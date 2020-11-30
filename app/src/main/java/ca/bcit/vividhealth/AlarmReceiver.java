@@ -64,8 +64,9 @@ public class AlarmReceiver {
             }
         }, calendar.getTime());
 
+    }
 
-
+    public AlarmReceiver(Context context, Calendar calendar, String message, int loop){
 
     }
 }

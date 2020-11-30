@@ -50,6 +50,8 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
     TextView profileName;
     private FirebaseFirestore database = FirebaseFirestore.getInstance();
     private Menu menu;
+    TextView waterTrackerText;
+    TextView postureTrackerText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,10 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
 
         profileName = findViewById(R.id.profile_name);
 
+
+        waterTrackerText = findViewById(R.id.water_count);
+        postureTrackerText = findViewById(R.id.posture_count);
+
         database.collection("Users").document(firebaseUser.getUid()).get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
@@ -68,6 +74,9 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
                         if(task.isSuccessful()){
                             DocumentSnapshot document = task.getResult();
                             profileName.setText(document.get("Name").toString());
+
+                            waterTrackerText.setText(document.get("waterCount").toString());
+                            postureTrackerText.setText(document.get("postureCount").toString());
 
                         }
                     }
@@ -274,5 +283,12 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void OnLogout(View view) {
+        FirebaseAuth.getInstance().signOut();
+        Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

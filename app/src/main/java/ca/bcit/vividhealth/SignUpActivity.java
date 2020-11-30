@@ -18,6 +18,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -60,6 +61,9 @@ public class SignUpActivity extends AppCompatActivity {
                                 Log.d(TAG, "createUserWithEmail:success");
                                 final FirebaseUser user = mAuth.getCurrentUser();
 
+                                Calendar calendar = Calendar.getInstance();
+                                calendar.setTimeInMillis(System.currentTimeMillis());
+
                                 final Map<String, Object> userMap = new HashMap<>();
                                 userMap.put("Name", "");
                                 userMap.put("Age", "");
@@ -68,6 +72,7 @@ public class SignUpActivity extends AppCompatActivity {
                                 userMap.put("timestamp", FieldValue.serverTimestamp());
                                 userMap.put("waterCount", 0);
                                 userMap.put("postureCount", 0);
+                                userMap.put("date", calendar.getTime());
 
 
 
