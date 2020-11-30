@@ -93,8 +93,18 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                         if (task.isSuccessful()) {
                             DocumentSnapshot document = task.getResult();
-                            greeting.setText(String.format("Hello, %s", document.get("Name").toString()));
-                            greeting.setVisibility(View.VISIBLE);
+                            System.out.println("Document: " + document.getData());
+                            if (document.getData() == null){
+                                Intent intent = new Intent(getBaseContext(), UserInfoActivity.class);
+                                startActivity(intent);
+                                Toast.makeText(getApplicationContext()
+                                        , "Your user profile is empty", Toast.LENGTH_SHORT).show();
+                                finish();
+
+                            } else {
+                                greeting.setText(String.format("Hello, %s", document.get("Name").toString()));
+                                greeting.setVisibility(View.VISIBLE);
+                            }
                         }
                     }
                 });

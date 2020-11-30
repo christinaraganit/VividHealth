@@ -73,8 +73,18 @@
     <string name="dev2">Asher</string>
     <string name="dev3">Zoltan</string>
     <string name="dev3description">Loves to solve problems... as long as there are cookies available around the workspace.</string>
-    <string name="dev2description">Asher add your thing here :p</string>
+    <string name="dev2description">A good back end developer however, its not really his preference of work.</string>
     <string name="dev1description">An aspiring frontend developer who considers herself very,
         <i>very</i> passionate about all things related to pasta.</string>
     <string name="github_btn">GITHUB</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="user_settings_guide">To make your experience using our app better,\nplease select your
+    account settings.</string>
+    <string name="water_reminder_prompt">Water Reminder:</string>
+    <string name="remind_water_prompt">Each day, When would you like reminders to drink water to start?</string>
+    <string name="frequency_prompt">In minutes, what interval would you like to be reminded</string>
+    <string name="posture_reminder_prompt">Posture Reminder:</string>
+    <string name="posture_water_prompt">Each day, When would you like reminders to drink water to start?</string>
+    <string name="finish_btn">Finish</string>
 </resources>
