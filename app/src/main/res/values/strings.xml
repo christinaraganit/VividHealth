@@ -8,7 +8,7 @@
     <string name="sign_up_text">Not a user? Sign up.</string>
     <string name="edit_text_name">Name</string>
     <string name="edit_text_age">Age</string>
-    <string name="edit_text_weight">Weight</string>
+    <string name="edit_text_weight">Weight in Kg</string>
 
     <string name="enabled">Enabled</string>
     <string name="disabled">Disabled</string>
