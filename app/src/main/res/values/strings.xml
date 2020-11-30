@@ -22,10 +22,14 @@
     <string name="reminder_detail_1">Remind me every 3 hours</string>
     <string name="reminder_time_1">Starting from 9:00 am to 10:00 pm</string>
     <string name="reminder_edit_btn">Edit this reminder</string>
+    <string name="greeting">Here are your stats for the day:</string>
 
     <string name="reminder_title_2">Remember to work out every day!</string>
     <string name="reminder_detail_2">Remind me every day</string>
     <string name="reminder_time_2">At 11:00 am</string>
+
+    <string name="water_count">Water</string>
+    <string name="posture_count">Posture</string>
 
     <string name="reminder_title_3">Time to sleep early!</string>
     <string name="reminder_detail_3">Remind me every day</string>
